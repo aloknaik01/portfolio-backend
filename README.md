@@ -9,8 +9,6 @@
   <img src="https://img.shields.io/badge/Node.js-Backend-green?logo=node.js" />
   <img src="https://img.shields.io/badge/Express.js-API-blue?logo=express" />
   <img src="https://img.shields.io/badge/MongoDB-Database-brightgreen?logo=mongodb" />
-  <img src="https://img.shields.io/github/license/yourusername/portfolio-backend" />
-</p>
 
 ---
 
