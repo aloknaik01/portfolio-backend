@@ -1,6 +1,7 @@
 import express from "express";
 import {
   addApplication,
+  updateApplication,
   deleteApplication,
   getallApplication,
 } from "../controllers/appController.js";
@@ -9,6 +10,7 @@ import { isAuth } from "../middlewares/isAuth.js";
 const router = express.Router();
 
 router.post("/add", isAuth, addApplication);
+router.put("/update/:id", isAuth, updateApplication);
 router.delete("/delete/:id", isAuth, deleteApplication);
 router.get("/getall", getallApplication);
 
