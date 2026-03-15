@@ -15,7 +15,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
+    origin: [
+      process.env.PORTFOLIO_URL?.replace(/\/$/, ""), 
+      process.env.DASHBOARD_URL?.replace(/\/$/, "")
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -31,6 +34,10 @@ app.use(
     tempFileDir: "/temp/",
   })
 );
+
+app.get("/", (req, res) => {
+  res.status(200).json({ status: "Online", message: "Portfolio Backend is running" });
+});
 
 app.use("/message", messageRouter);
 app.use("/user", userRouter);
