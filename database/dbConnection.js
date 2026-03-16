@@ -3,12 +3,17 @@ const { Pool } = pkg;
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  user: !process.env.DATABASE_URL ? process.env.DB_USER : undefined,
-  host: !process.env.DATABASE_URL ? process.env.DB_HOST : undefined,
-  database: !process.env.DATABASE_URL ? process.env.DB_DATABASE : undefined,
-  password: !process.env.DATABASE_URL ? process.env.DB_PASSWORD : undefined,
-  port: !process.env.DATABASE_URL ? (process.env.DB_PORT || 5432) : undefined,
-  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
+  ssl: { rejectUnauthorized: false },
+});
+
+
+pool.connect((err, client, release) => {
+  if (err) {
+    console.error("Database connection failed:", err.message);
+  } else {
+    console.log("Database connected successfully!");
+    release();
+  }
 });
 
 pool.on('error', (err, client) => {
